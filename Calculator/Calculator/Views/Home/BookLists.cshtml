@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Calculator.Models.BookListViewModel>
+
+@{
+    ViewData["Title"] = "BookLists";
+}
+
+<h1>Posts</h1>
+
+<p>
+    <a asp-action="CreateBook" asp-route-id="@ViewData["CategoryId"]">Create New Book</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GenreTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookDescription)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GenreTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookDescription)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditBook", new { id = item.BookId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.BookId }) |
+                    @Html.ActionLink("Delete", "DeleteBook", new { id = item.BookId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
